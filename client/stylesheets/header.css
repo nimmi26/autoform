@@ -1,0 +1,24 @@
+.header-top {
+    background: #4760bb;
+}
+@media (max-width: 1199px) and (min-width: 992px){
+    .visible-md {
+        display: block!important;
+    }
+}
+
+.header-top .top-contact li {
+    display: inline-block;
+    line-height: 50px;
+    text-align: center;
+}
+.header-top .top-contact li.profile{
+    padding: 0 20px;
+    color: #fff;
+    cursor: default;
+}
+
+.user-style{
+    color: white;
+    margin-right: -15px;
+}

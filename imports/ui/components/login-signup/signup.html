@@ -1,0 +1,18 @@
+<template name="signup">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <form class="signup">
+                    <h2>Signup</h2>
+                    {{#autoForm collection="Meteor.users" id="insertForm" type="insert"}}
+                        {{> afQuickField name='emails.0.address'}}
+                        {{> afQuickField name='services.0.password'}}
+                        {{> afQuickField name='profile.firstName'}}
+                        
+                    {{/autoForm }}
+                    <a href="{{pathFor '/'}}" >Already have an account? Login here</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</template>
