@@ -17,6 +17,10 @@ Schema.UserProfile = new SimpleSchema({
         type: String,
         allowedValues: ['Male', 'Female'],
         optional: true
+    },
+    userRole:{
+        type: Number,
+        defaultValue: 1//role 1 show its employee
     }
 });
 
@@ -54,10 +58,7 @@ Schema.User = new SimpleSchema({
         type: Schema.UserProfile,
         optional: true
     },
-    userRole:{
-        type: Number,
-        defaultValue: 1//role 1 show its employee
-    },
+   
     // Make sure this services field is in your schema if you're using any of the accounts packages
     services: {
         type: Object,

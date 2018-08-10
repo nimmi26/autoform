@@ -1,5 +1,40 @@
 <template name="adminHomePage">
     <div>
         {{> header}}
+        <div class="container">
+			<div class="row">
+				<div class="col-md-12">
+                    <h2>All Employee</h2>
+                    <div id="box">
+                        <table class="table table-dark">
+                            <thead>
+                                <tr>
+                                    <th>e-Mail</th>
+                                    <th>Accepted/Pending</th>
+                                    <th>Invitation Date</th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {{#each invitationList}}
+                                <tr>
+                                    <td>{{email}}{{_id}}</td>
+                                    <td>
+                                    {{# if acceptedOrNot}}
+                                        Accepted
+                                    {{else}}
+                                        Pending
+                                    {{/if}}
+                                    </td>
+                                    <td>{{formateTime invitationDate}}</td>
+                                    <td><a href="{{pathFor 'userDetail' _id=this._id}}" class="btn btn-primary">View</a></td>
+                                </tr>
+                            {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>

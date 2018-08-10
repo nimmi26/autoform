@@ -19,18 +19,20 @@ AutoForm.hooks({
             var self = this;
             let emailVar = doc.email;
             if (emailVar)  {
-                Meteor.call("inviteUser",emailVar,0,function(err,res){
-                    if(err){
-                        swal('Oops!',err.reason,"error");
+                Meteor.call('checkUserInInviteCollection',emailVar,function(err,res){
+                    if(res){
+                        swal("Invitation already sent.");
                     }else{
-                        console.log(res)
-                        if(res){
-                            swal("Invitation sent.","","success");
-                        }else{
-                            swal("Invitation already sent.");
-                        }                        
+                        Meteor.call("inviteUser",emailVar,function(err,res){
+                            if(err){
+                                swal('Oops!',err.reason,"error");
+                            }else{
+                                swal("Invitation sent.","","success");                        
+                            }
+                        })
                     }
                 })
+                
             }else {
                swal('Email is required',"","error");
             }

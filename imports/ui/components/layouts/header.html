@@ -8,9 +8,14 @@
                 <div class="col-sm-12 col-md-8">
                     <ul class="top-contact pull-right">
                         <i class="fa fa-user user-style"></i>
-                        <li class="profile addModal">{{getUser}}</li>
+                        <li class="profile addModal">{{getUser.name}}</li>
+                        
+                        {{#if getUser.userRole}}
+                       
+                        {{else}}
                         <i class="fa fa-plus user-style"></i>
                         <li class="add-a-user profile addUserModal">Add New User</li>
+                        {{/if}}
                     </ul>
                 </div>
             </div>

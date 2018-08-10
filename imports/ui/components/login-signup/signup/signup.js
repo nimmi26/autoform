@@ -51,27 +51,34 @@ AutoForm.hooks({
             let birthday = insertDoc.profile.birthday;
             let gender = insertDoc.profile.gender;
             if (emailVar && passwordVar && name && birthday && gender)  {
-              //  alert(email,password,firstName);
-                Accounts.createUser({
-                    email: emailVar,
-                    password: passwordVar,
-                    createdAt: new Date(),
-                    profile:{
-                        name,
-                        birthday,
-                        gender
-                       // role:0 //role 0 show that user is employee
-                    }
-                },function(e, id){
-                    if(e){
-                        swal(e.reason, {
-                            icon: "error",
+                Meteor.call('checkUserInInviteCollection',emailVar,function(err,res){
+                    if(res){
+                        Accounts.createUser({
+                            email: emailVar,
+                            password: passwordVar,
+                            createdAt: new Date(),
+                            profile:{
+                                name,
+                                birthday,
+                                gender
+                            },
+                        },function(e, id){
+                            if(e){
+                                swal(e.reason, {
+                                    icon: "error",
+                                });
+                            }else{
+                                Meteor.call('updateInvitee',emailVar);
+                                sweetAlert("Accounct Created.","success");
+                                FlowRouter.go('/admin');
+                            }
                         });
                     }else{
-                        sweetAlert("Accounct Created.","success");
-                        FlowRouter.go('/admin');
+                        sweetAlert("You are not invited by Admin. Please contact to admin");
                     }
                 });
+              //  alert(email,password,firstName);
+               /* */
             }else {
                 sweetAlert("All fields are required..","error");
             }
