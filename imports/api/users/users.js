@@ -4,13 +4,8 @@ SimpleSchema.extendOptions(['autoform']);
 
 const Schema = {};
 Schema.UserProfile = new SimpleSchema({
-    firstName: {
-        label: "First Name",
-        type: String,
-        optional: true
-    },
-    lastName: {
-        label: "Last Name",
+    name: {
+        label: "Name",
         type: String,
         optional: true
     },
@@ -21,19 +16,6 @@ Schema.UserProfile = new SimpleSchema({
     gender: {
         type: String,
         allowedValues: ['Male', 'Female'],
-        optional: true
-    },
-    organization : {
-        type: String,
-        optional: true
-    },
-    website: {
-        type: String,
-        regEx: SimpleSchema.RegEx.Url,
-        optional: true
-    },
-    bio: {
-        type: String,
         optional: true
     }
 });
@@ -72,6 +54,10 @@ Schema.User = new SimpleSchema({
         type: Schema.UserProfile,
         optional: true
     },
+    userRole:{
+        type: Number,
+        defaultValue: 1//role 1 show its employee
+    },
     // Make sure this services field is in your schema if you're using any of the accounts packages
     services: {
         type: Object,
@@ -90,6 +76,7 @@ Schema.User = new SimpleSchema({
 
 });
 
-Meteor.users.attachSchema(Schema.User);
+const Users = Meteor.users.attachSchema(Schema.User);
+export default(Users);
 
-export default(Meteor.users)
+

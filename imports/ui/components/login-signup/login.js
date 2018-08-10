@@ -1,6 +1,6 @@
 import './login.html';
 import { Meteor } from 'meteor/meteor';
-
+import { AutoForm } from 'meteor/aldeed:autoform';
 
 
 Template.login.helpers({
@@ -8,7 +8,7 @@ Template.login.helpers({
 });
 
 Template.login.events({
-	'submit .login':function(event) {
+	/*'submit .login':function(event) {
 		event.preventDefault();
 		let emailVar = (event.target.email.value).trim();
   	    let passwordVar = (event.target.password.value).trim();
@@ -20,20 +20,35 @@ Template.login.events({
                 FlowRouter.go('/admin-home');
             }
   	    });
-	}	
+	}	*/
 });
 
-AutoForm.addHooks('loginAdmin', {
-    onSubmit: function (formFields, updateDoc, currentDoc) {
-        console.log('hello')
-      Meteor.loginWithPassword(formFields.email, formFields.password, (error) => {
-        if (error) { //TODO: dry with signup
-          instance.errorText.set(error.reason);
-          this.done(error);
-        } else {
-          this.done();
-        }
-      });
-      return false;
-    }
-  });
+AutoForm.hooks({
+  	logInForm2: {
+        onSubmit: function(doc) {
+        	var self = this;
+          
+          	let emailVar = doc.emails[0].address;
+			let passwordVar = doc.services[0].password;
+			  console.log(doc);
+          	//Log user in with email and password
+          	if (emailVar && passwordVar)  {
+				
+				Meteor.loginWithPassword(emailVar,passwordVar,(err)=>{
+					if(!err){
+						FlowRouter.go('/admin-home');
+					}else{
+						//("All fields are required..","error");
+						//console.log(err);
+						swal("Oops!", err.reason, "error")
+					}
+					
+				})   
+          	}else {
+				alert('fkjvjf')
+              	//sweetAlert("All fields are required..","error");
+			}
+        	return false;
+      	}
+  	}
+})

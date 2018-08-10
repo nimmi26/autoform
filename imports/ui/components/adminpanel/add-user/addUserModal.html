@@ -7,17 +7,10 @@
                     <h3>Invite Employee To Join Leave Management </h3>
                 </div>
                 <div class="modal-body">
-                        {{> quickForm
-                            collection="Meteor.users"
-                            template="bootstrap3-horizontal"
-                            label-class="col-sm-2"
-                            input-col-class="col-sm-10"                    
-                            id="signupUser"
-                            fields="emails.0.address"
-                            buttonContent="Invite"
-                            resetOnSuccess=true
-                        }}
-                    
+                    {{#autoForm collection=invitations id="invitation" validation="none"}}
+                        {{> afQuickField name='email'}}
+                        <button type="submit" class="btn btn-primary">Invite</button>
+                    {{/autoForm}}
                 </div>
             </div>          
         </div>

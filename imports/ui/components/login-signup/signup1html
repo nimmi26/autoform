@@ -4,12 +4,13 @@
             <div class="col-md-8">
                 <form class="signup">
                     <h2>Signup</h2>
-                    {{#autoForm collection="Meteor.users" id="insertForm" type="insert"}}
+                    {{#autoForm collection="Meteor.users" id="insertForm" type="method" meteormethods="insertUser"}}
                         {{> afQuickField name='emails.0.address'}}
                         {{> afQuickField name='services.0.password'}}
-                        {{> afQuickField name='profile.firstName'}}
-                        
+                        {{> afQuickField name='profile.firstName'}}  
+                        <button type="submit" class="btn btn-primary">Insert</button>
                     {{/autoForm }}
+                 
                     <a href="{{pathFor '/'}}" >Already have an account? Login here</a>
                 </form>
             </div>
