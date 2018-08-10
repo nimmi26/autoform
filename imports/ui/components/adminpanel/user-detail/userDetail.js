@@ -1,0 +1,2 @@
+import './userDetail.html';
+
