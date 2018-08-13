@@ -68,7 +68,9 @@ AutoForm.hooks({
                                     icon: "error",
                                 });
                             }else{
-                                Meteor.call('updateInvitee',emailVar);
+                                userId = Meteor.userId();
+                                console.log(id);
+                                Meteor.call('updateInvitee',emailVar,userId);
                                 sweetAlert("Accounct Created.","success");
                                 FlowRouter.go('/admin');
                             }

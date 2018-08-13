@@ -1,6 +1,6 @@
 import './adminHomePage.html';
-import '../layouts/header.js';
-import  Invitations  from '../../../api/invitations/invitations.js';
+import '../../layouts/header.js';
+import  Invitations  from '../../../../api/invitations/invitations.js';
 import { Meteor } from 'meteor/meteor';
 
 Template.adminHomePage.onCreated(function(){

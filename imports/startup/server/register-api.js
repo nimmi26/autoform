@@ -6,3 +6,4 @@ import '../../api/users/publications.js';
 import '../../api/invitations/invitations.js';
 import '../../api/invitations/methods.js';
 import '../../api/invitations/publication.js';
+import '../../api/leaves';

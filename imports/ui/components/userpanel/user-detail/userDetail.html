@@ -1,4 +1,4 @@
-<template name="userDetail">
+<template name="userDetail1">
     {{> header}}
     <div class="container">
         <div class="row">
@@ -18,20 +18,17 @@
                         <div class="row">
                             <div class="col-md-4 ">
                                 <div class="list-group ">
-                                    <a href="{{pathFor '/admin-home'}}" class="list-group-item list-group-item-action ">Dashboard</a>
                                     <a href="{{pathFor '/user-detail/:id' id=userDetail._id}}" class="list-group-item list-group-item-action active">User Detail</a>
                                     <a href="{{pathFor '/user-detail/leaves/:id' id=userDetail._id}}" class="list-group-item list-group-item-action">User Leaves</a>
                                     
                                 </div> 
                             </div>
                             <div class="col-md-8">
-                                {{#autoForm collection="Meteor.users" id="updateUserForm" doc=selectedPersonDoc validation="none" }}
+                                {{#autoForm collection="Meteor.users" id="updateUserFormByUser" doc=selectedPersonDoc validation="none" }}
                                     {{> afQuickField name='emails.0.address' readonly=true}}
                                     {{> afQuickField name='profile.name'}}  
                                     {{> afQuickField name='profile.birthday'}} 
                                     {{> afQuickField name='profile.gender' options="allowed"}} 
-                                    {{> afQuickField name='profile.dateOfJoining'}}
-                                    {{> afQuickField name='profile.dateOfConfrimation'}}
                                     <button type="submit" class="btn btn-primary">Update</button>
                                 {{/autoForm }}
                                 

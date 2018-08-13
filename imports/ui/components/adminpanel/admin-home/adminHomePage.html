@@ -10,8 +10,9 @@
                             <thead>
                                 <tr>
                                     <th>e-Mail</th>
-                                    <th>Accepted/Pending</th>
                                     <th>Invitation Date</th>
+                                    <th>Accepted/Pending</th>
+                                   
                                     
                                 </tr>
                             </thead>
@@ -19,6 +20,7 @@
                             {{#each invitationList}}
                                 <tr>
                                     <td>{{email}}</td>
+                                    <td>{{formateTime invitationDate}}</td>
                                     <td>
                                     {{# if acceptedOrNot}}
                                         Accepted
@@ -26,8 +28,12 @@
                                         Pending
                                     {{/if}}
                                     </td>
-                                    <td>{{formateTime invitationDate}}</td>
-                                    <td><a href="{{pathFor 'user-detail' _id=this._id}}" class="btn btn-primary">View</a></td>
+                                    
+                                    <td>
+                                        {{# if acceptedOrNot}}
+                                            <a href="{{pathFor '/user-detail/:id' id=userId}}" class="btn btn-primary">View</a>
+                                        {{/if}}
+                                    </td>
                                 </tr>
                             {{/each}}
                             </tbody>

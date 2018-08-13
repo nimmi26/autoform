@@ -16,7 +16,7 @@ FlowRouter.route('/admin', {
 	},
 });
 
-FlowRouter.route('/singup', {
+FlowRouter.route('/signup', {
 	name: 'singup',
 	action() {
 		document.title = "Signup";
@@ -24,18 +24,25 @@ FlowRouter.route('/singup', {
 	},
 });
 
-FlowRouter.route('/admin-home',{
-	name: 'adminHomePage',
+FlowRouter.route('/homePage',{
+	name: 'homePage',
 	action(){
 		document.title = "Admin Home";
-		BlazeLayout.render('App_body', { main: 'adminHomePage'});
+		BlazeLayout.render('App_body', { main: 'homePage'});
 	},
 });
 
-FlowRouter.route('/user-detail/:_id',{
+FlowRouter.route('/user-detail/:id',{
 	name:'adminHomePage',
 	action(){
-		BlazeLayout.render('App_body',{ mani: 'userDetail'})
+		BlazeLayout.render('App_body',{ main: 'userDetail'})
+	}
+});
+
+FlowRouter.route('/user-detail/leaves/:id',{
+	name:'userLeave',
+	action(){
+		BlazeLayout.render('App_body',{ main: 'userLeave'})
 	}
 });
 

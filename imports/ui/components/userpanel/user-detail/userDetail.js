@@ -1,48 +1,38 @@
 import './userDetail.html';
-import '../user-leave/userLeave.js';
+//import '../user-leave/userLeave.js';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { AutoForm } from 'meteor/aldeed:autoform';
-Template.userDetail.onCreated(function(){
-    Meteor.subscribe('userList');
+Template.userDetail1.onCreated(function(){
+   // Meteor.subscribe('userList');
     // Meteor.subscribe('invitations');
 });
 
-Template.userDetail.helpers({
+Template.userDetail1.helpers({
     userDetail(){
-        let userId = FlowRouter.getParam("id");
-        let userDetail = Meteor.users.findOne({_id:userId});
+
+        let userDetail = Meteor.user();
         return userDetail;
        
     },
     selectedPersonDoc(){
-        let userId = FlowRouter.getParam("id");
-        let userDetail = Meteor.users.findOne({_id:userId});
+        let userDetail = Meteor.user();
         return userDetail;
     }
 });
 
 
 AutoForm.hooks({
-    updateUserForm: {
+    updateUserFormByUser: {
         onSubmit: function(updatedDoc) {
             var self = this;
             
             let name = updatedDoc.profile.name;
             let birthday = updatedDoc.profile.birthday;
-            let gender = updatedDoc.profile.gender;
-            let dateOfConfrimation = updatedDoc.profile.dateOfConfrimation;
-            let userId = FlowRouter.getParam("id");
-            updatedDoc._id = userId;           
+            let gender = updatedDoc.profile.gender;            
+            updatedDoc._id = Meteor.userId();
+            updatedDoc.role = Meteor.user().profile.userRole;          
             if (name && birthday && gender)  {
-                if(dateOfConfrimation){
-                    updatedDoc.profile.confrimOrNot = true;
-                    Meteor.call("assignLeave",userId,1);
-                }else{
-                    updatedDoc.profile.confrimOrNot = false;
-                    updatedDoc.profile.dateOfConfrimation = "";
-                    Meteor.call("assignLeave",userId,-1);
-                }
-
+                console.log(updatedDoc)
                 Meteor.call('updateUser',updatedDoc,function(err,res){
                     if(res){
                         sweetAlert("User updated.","success");

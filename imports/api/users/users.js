@@ -21,6 +21,18 @@ Schema.UserProfile = new SimpleSchema({
     userRole:{
         type: Number,
         defaultValue: 1//role 1 show its employee
+    },
+    dateOfJoining:{
+        type:Date,
+        optional:true
+    },
+    dateOfConfrimation:{
+        type:Date,
+        optional:true
+    },
+    confrimOrNot:{
+        type:Boolean,
+        defaultValue:false
     }
 });
 
@@ -43,6 +55,7 @@ Schema.User = new SimpleSchema({
         type: Object
     },
     "emails.$.address": {
+        label:"e-Mail",
         type: String,
         regEx: SimpleSchema.RegEx.Email
     },

@@ -4,8 +4,8 @@ import './userInfoModal.js'
 import '../adminpanel/add-user/addUserModal.js';
 Template.header.helpers({
     getUser(){
-        let userName =  Meteor.user() && Meteor.user().profile;
-		return userName;
+        let userDetail =  Meteor.user() && Meteor.user().profile;
+		return userDetail;
     }
 });
 

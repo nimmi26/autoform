@@ -20,8 +20,9 @@ Meteor.methods({
         const inviteeEmail = Invitations.find({email:email,}).count();
         return inviteeEmail;
     },
-    updateInvitee(email){
-        return Invitations.update({email:email},{$set:{acceptedOrNot:true}})
+    updateInvitee(email,userId){
+        console.log(userId)
+        return Invitations.update({email:email},{$set:{acceptedOrNot:true,userId}})
     }
 });
 

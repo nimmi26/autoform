@@ -17,6 +17,10 @@ Schemas.Invitations = new SimpleSchema({
     },
     invitationDate:{
         type: new Date()
+    },
+    userId:{
+        type: String,
+        optional: true
     }
 });
 
