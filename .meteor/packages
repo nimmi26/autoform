@@ -36,3 +36,4 @@ aldeed:autoform@6.3.0
 aldeed:schema-index
 email
 momentjs:moment
+tsega:bootstrap3-datetimepicker

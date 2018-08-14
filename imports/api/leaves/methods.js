@@ -13,7 +13,21 @@ Meteor.methods({
                 userId,
                 totalNoOfLeaves:1
             })
-        }
-       
+        }  
+    },
+    applyLeaves(applyData){
+        return Leaves.update({userId:Meteor.userId()},
+            {$push:
+                {
+                   'leaveHistory':{
+                        leaveId: applyData.leaveId,
+                        appliedLeave:applyData.days,
+                        appliedto:applyData.toDate,
+                        appliedFrom:applyData.fromDate,
+                        approvedDate:new Date,
+                   }
+                }  
+            }
+        );
     }
 });

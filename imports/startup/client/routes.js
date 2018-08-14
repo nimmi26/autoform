@@ -8,7 +8,7 @@ import '../../ui/pages/home/home.js';
 import '../../ui/pages/not-found/not-found.js';
 
 // Set up all routes in the app
-FlowRouter.route('/admin', {
+FlowRouter.route('/', {
 	name: 'App.home',
 	action() {
 		document.title = "Login";
@@ -24,6 +24,14 @@ FlowRouter.route('/signup', {
 	},
 });
 
+// Router for user leaves
+FlowRouter.route('/leaves/:id',{
+	name: 'userLeaves',
+	action(){
+		BlazeLayout.render('App_body',{main: 'userLeaves'})
+	},
+});
+
 FlowRouter.route('/homePage',{
 	name: 'homePage',
 	action(){
@@ -32,6 +40,7 @@ FlowRouter.route('/homePage',{
 	},
 });
 
+//router for admin can see user detail
 FlowRouter.route('/user-detail/:id',{
 	name:'adminHomePage',
 	action(){
@@ -39,6 +48,15 @@ FlowRouter.route('/user-detail/:id',{
 	}
 });
 
+//router for apply leaves  for loggedin user
+FlowRouter.route('/applied-leaves/:id',{
+	name:'',
+	action(){
+		BlazeLayout.render('App_body',{ main: 'applyLeaves'})
+	}
+});
+
+//router for admin can see user leaves
 FlowRouter.route('/user-detail/leaves/:id',{
 	name:'userLeave',
 	action(){

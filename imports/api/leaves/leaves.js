@@ -5,26 +5,6 @@ SimpleSchema.extendOptions(['autoform']);
 const Leaves = new Mongo.Collection("leaves");
 const Schemas = {};
 
-Schemas.UserLeaves = new SimpleSchema({
-    appliedLeave: {
-        label: "Applied Leaves",
-        type: Number,
-        optional: true
-    },
-    appliedDate: {
-        type: Date,
-        optional: true
-    },
-    approvedDate: {
-        type: Date,
-        optional: true
-    },
-    approvedOrNot:{
-        type: Boolean,
-        optional: true
-    }
-});
-
 Schemas.Leaves = new SimpleSchema({
     totalNoOfLeaves:{
         type: Number
@@ -33,8 +13,37 @@ Schemas.Leaves = new SimpleSchema({
         type: String,
     },
     leaveHistory:{
-        type: Schemas.UserLeaves,
+        type: Array,
         optional: true
+    },
+    "leaveHistory.$": {
+        type: Object
+    },
+    "leaveHistory.$.appliedLeave": {
+        label: "Applied Leaves",
+        type: Number,
+        optional: true
+    },
+    "leaveHistory.$.appliedto": {
+        type: Date,
+    },
+    "leaveHistory.$.appliedFrom": {
+        type: Date,
+    },
+    "leaveHistory.$.approvedDate": {
+        type: Date,
+        optional: true
+    },
+    "leaveHistory.$.approvedOrNot": {
+        type: Boolean,
+        defaultValue: false
+    },
+    "leaveHistory.$.canceled": {
+        type: Boolean,
+        defaultValue: false
+    },
+    "leaveHistory.$.leaveId":{
+        type: String
     }
 });
 

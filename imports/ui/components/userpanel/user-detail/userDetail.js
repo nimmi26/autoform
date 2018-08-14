@@ -1,5 +1,7 @@
 import './userDetail.html';
-//import '../user-leave/userLeave.js';
+import '../user-leaves/userLeaves.js';
+
+import '../apply-leaves/applyLeaves.js';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { AutoForm } from 'meteor/aldeed:autoform';
 Template.userDetail1.onCreated(function(){
@@ -9,10 +11,8 @@ Template.userDetail1.onCreated(function(){
 
 Template.userDetail1.helpers({
     userDetail(){
-
         let userDetail = Meteor.user();
         return userDetail;
-       
     },
     selectedPersonDoc(){
         let userDetail = Meteor.user();

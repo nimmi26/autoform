@@ -26,6 +26,5 @@ Template.userLeave.events({
         const leaves = $("#leaves").val();
         let userId = FlowRouter.getParam("id");
         Meteor.call('assignLeave',userId,leaves);
-        //console.log(leaves);
     }
 })

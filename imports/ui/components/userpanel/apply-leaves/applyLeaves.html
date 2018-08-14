@@ -1,0 +1,113 @@
+<template name="applyLeaves">
+	{{> header}} 
+	<div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h4>Welcome {{userDetail.profile.name}}  
+                                    {{#if userDetail.profile.confrimOrNot}}
+                                    <i class="fa fa-star" aria-hidden="true" style="color: #4760BB;"></i>
+                                    {{/if}}
+                                </h4>
+                                <hr>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 ">
+                                <div class="list-group ">
+                                    <a href="{{pathFor '/homePage'}}" class="list-group-item list-group-item-action ">Dashboard</a>
+                                    <a href="{{pathFor '/leaves/:id' id=userDetail._id}}" class="list-group-item list-group-item-action "> Leaves</a>
+                                    <a href="{{pathFor '/applied-leaves/:id' id=userDetail._id}}" class="list-group-item list-group-item-action active">Apply Leaves</a>
+                                </div> 
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-group row">
+                                    <label for="username" class="col-4 col-form-label">Total Leave- {{leavesDetails.totalNoOfLeaves}}</label>  
+                                </div>
+                            </div>
+                            <form id="applyLeaves">
+	                            <div class='col-md-4'>
+							        <div class="form-group">
+							        	<label>To date</label>
+							            <div class='input-group date' id='datetimepicker6'>
+							            	
+							                <input type='text' class="form-control" id="toDate"/>
+							                <span class="input-group-addon">
+							                    <span class="glyphicon glyphicon-calendar"></span>
+							                </span>
+							            </div>
+							        </div>
+							    </div>
+							    <div class='col-md-4'>
+							        <div class="form-group">
+							        	<label>From date</label>
+							            <div class='input-group date' id='datetimepicker7'>
+
+							                <input type='text' class="form-control" id="fromDate" />
+							                <span class="input-group-addon">
+							                    <span class="glyphicon glyphicon-calendar"></span>
+							                </span>
+							            </div>
+							        </div>
+							    </div>
+							    <button class="btn btn-primary apply-leave">Apply</button>
+							</form>
+                        </div>
+                        <div class="row">
+                        	<h2>All Leaves</h2>
+                        	<table class="table">
+							  	<thead>
+								    <tr>
+								     	<th scope="col">To Date</th>
+								     	<th scope="col">From date</th>
+								    	<th scope="col">Approved Or Not</th>
+								    	<th scope="col">Cancel</th>
+								    </tr>
+							  	</thead>
+							  	<tbody>
+							  		{{userLeaveHistory leavesDetails.leaveHistory}}
+							  		<!--{{#each leavesDetails.leaveHistory}}
+							  		<tr>
+								      	<td>{{ 
+								      		formateTime (leavesDetails.leaveHistory.[0].appliedto)
+ 
+								      	}}
+								      	</td>
+								      	<td>{{ 
+								      		formateTime (leavesDetails.leaveHistory.appliedFrom)
+ 
+								      	}}</td>
+								      	<td>{{this.leavesDetails.leaveHistory.appliedLeave}}</td>
+								      	<td>@mdo</td>
+								    </tr>
+								    {{/each}}-->
+							  	</tbody>
+							</table>								
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+	    $(function () {
+	        $('#datetimepicker6').datetimepicker({
+	        	daysOfWeekDisabled: [0, 6],
+	        });
+	        $('#datetimepicker7').datetimepicker({
+	        	daysOfWeekDisabled: [0, 6],
+	            useCurrent: false //Important! See issue #1075
+	        });
+	        $("#datetimepicker6").on("dp.change", function (e) {
+	            $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
+	        });
+	        $("#datetimepicker7").on("dp.change", function (e) {
+	            $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
+	        });
+	    });
+	</script>
+
+</template>

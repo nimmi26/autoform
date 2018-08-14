@@ -7,7 +7,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-12">
-                                <h4>{{userDetail.profile.name}} Profile 
+                                <h4>Welcome {{userDetail.profile.name}} 
                                     {{#if userDetail.profile.confrimOrNot}}
                                     <i class="fa fa-star" aria-hidden="true" style="color: #4760BB;"></i>
                                     {{/if}}
@@ -18,8 +18,8 @@
                         <div class="row">
                             <div class="col-md-4 ">
                                 <div class="list-group ">
-                                    <a href="{{pathFor '/user-detail/:id' id=userDetail._id}}" class="list-group-item list-group-item-action active">User Detail</a>
-                                    <a href="{{pathFor '/user-detail/leaves/:id' id=userDetail._id}}" class="list-group-item list-group-item-action">User Leaves</a>
+                                    <a href="{{pathFor '/homepage' }}" class="list-group-item list-group-item-action active">User Detail</a>
+                                    <a href="{{pathFor '/leaves/:id' id=userDetail._id}}" class="list-group-item list-group-item-action">User Leaves</a>
                                     
                                 </div> 
                             </div>
