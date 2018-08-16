@@ -33,6 +33,10 @@ Schema.UserProfile = new SimpleSchema({
     confrimOrNot:{
         type:Boolean,
         defaultValue:false
+    },
+    totalNoOfLeaves:{
+        type: Number,
+        defaultValue:0
     }
 });
 

@@ -32,7 +32,7 @@ AutoForm.hooks({
             updatedDoc._id = Meteor.userId();
             updatedDoc.role = Meteor.user().profile.userRole;          
             if (name && birthday && gender)  {
-                console.log(updatedDoc)
+                
                 Meteor.call('updateUser',updatedDoc,function(err,res){
                     if(res){
                         sweetAlert("User updated.","success");

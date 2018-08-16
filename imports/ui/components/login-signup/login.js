@@ -30,7 +30,7 @@ AutoForm.hooks({
           
           	let emailVar = doc.emails[0].address;
 			let passwordVar = doc.services[0].password;
-			  console.log(doc);
+			  
           	//Log user in with email and password
           	if (emailVar && passwordVar)  {
 				

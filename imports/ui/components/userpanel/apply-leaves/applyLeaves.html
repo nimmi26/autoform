@@ -18,18 +18,16 @@
                         <div class="row">
                             <div class="col-md-4 ">
                                 <div class="list-group ">
-                                    <a href="{{pathFor '/homePage'}}" class="list-group-item list-group-item-action ">Dashboard</a>
-                                    <a href="{{pathFor '/leaves/:id' id=userDetail._id}}" class="list-group-item list-group-item-action "> Leaves</a>
-                                    <a href="{{pathFor '/applied-leaves/:id' id=userDetail._id}}" class="list-group-item list-group-item-action active">Apply Leaves</a>
+                                    <a href="{{pathFor '/homePage'}}" class="list-group-item list-group-item-action ">User Details</a>
+                                    <a href="{{pathFor '/applied-leaves/:id' id=userDetail._id}}" class="list-group-item list-group-item-action active">Leaves</a>
                                 </div> 
                             </div>
                             <div class="col-md-8">
                                 <div class="form-group row">
-                                    <label for="username" class="col-4 col-form-label">Total Leave- {{leavesDetails.totalNoOfLeaves}}</label>  
+                                    <label for="username" class="col-4 col-form-label">Total Leave- {{userDetail.profile.totalNoOfLeaves}}</label>  
                                 </div>
-                            </div>
-                            <form id="applyLeaves">
-	                            <div class='col-md-4'>
+                                <form id="applyLeaves">
+	                            
 							        <div class="form-group">
 							        	<label>To date</label>
 							            <div class='input-group date' id='datetimepicker6'>
@@ -40,50 +38,71 @@
 							                </span>
 							            </div>
 							        </div>
-							    </div>
-							    <div class='col-md-4'>
-							        <div class="form-group">
-							        	<label>From date</label>
-							            <div class='input-group date' id='datetimepicker7'>
+							    
+							    
+						        <div class="form-group">
+						        	<label>From date</label>
+						            <div class='input-group date' id='datetimepicker7'>
 
-							                <input type='text' class="form-control" id="fromDate" />
-							                <span class="input-group-addon">
-							                    <span class="glyphicon glyphicon-calendar"></span>
-							                </span>
-							            </div>
-							        </div>
-							    </div>
-							    <button class="btn btn-primary apply-leave">Apply</button>
+						                <input type='text' class="form-control" id="fromDate" />
+						                <span class="input-group-addon">
+						                    <span class="glyphicon glyphicon-calendar"></span>
+						                </span>
+						            </div>
+						        </div>
+						    
+							    
+						        <div class="form-group">
+						        	<label>Reason</label>
+						            
+						            <textarea class="form-control" id="leaveReason" ></textarea>
+						           
+						        </div>	
+						  
+							    <div class='col-md-6'>
+								    <button class="btn btn-primary apply-leave">Apply</button>
+								</div>
 							</form>
+                            </div>
+                            
                         </div>
                         <div class="row">
                         	<h2>All Leaves</h2>
                         	<table class="table">
 							  	<thead>
 								    <tr>
+								    	<th>Total days</th>
 								     	<th scope="col">To Date</th>
 								     	<th scope="col">From date</th>
 								    	<th scope="col">Approved Or Not</th>
 								    	<th scope="col">Cancel</th>
+								    	<th scope="col">Approved Date</th>
 								    </tr>
 							  	</thead>
 							  	<tbody>
-							  		{{userLeaveHistory leavesDetails.leaveHistory}}
-							  		<!--{{#each leavesDetails.leaveHistory}}
+							  		
+							  		{{#each leavesDetails}}
 							  		<tr>
-								      	<td>{{ 
-								      		formateTime (leavesDetails.leaveHistory.[0].appliedto)
- 
-								      	}}
+							  			<td>{{appliedLeave}}</td>
+								      	<td>{{formateTime appliedto}}</td>
+								      	<td>{{formateTime appliedFrom}}</td>
+								      	<td>{{#if approvedOrNot}}Approved{{else}}Pending{{/if}}</td>
+								      	<td>
+								      		{{# if cancelByUser }}
+								      			<button value="{{_id}}" class="btn btn-primary cancel_leave" disabled>Canceled</button>
+								      		{{else if cancelByAdmin}}
+								      			<button value="{{_id}}" class="btn btn-primary cancel_leave" disabled>Canceled By Admin</button>
+								      		{{else}}
+								      			<button value="{{_id}}" class="btn btn-primary cancel_leave">Cancel</button>
+								      		{{/if}}	
 								      	</td>
-								      	<td>{{ 
-								      		formateTime (leavesDetails.leaveHistory.appliedFrom)
- 
-								      	}}</td>
-								      	<td>{{this.leavesDetails.leaveHistory.appliedLeave}}</td>
-								      	<td>@mdo</td>
+								      	<td>{{#if approvedDate}}
+								      		{{formateTime approvedDate }}
+								      		{{else}}
+								      		{{/if}}
+								      	</td>
 								    </tr>
-								    {{/each}}-->
+								    {{/each}}
 							  	</tbody>
 							</table>								
                         </div>
@@ -96,10 +115,13 @@
 	    $(function () {
 	        $('#datetimepicker6').datetimepicker({
 	        	daysOfWeekDisabled: [0, 6],
+	        	minDate:new Date()
 	        });
 	        $('#datetimepicker7').datetimepicker({
 	        	daysOfWeekDisabled: [0, 6],
-	            useCurrent: false //Important! See issue #1075
+	           
+	            minDate:(new Date().setHours(18,30)),
+	            //setHours: //Important! See issue #1075
 	        });
 	        $("#datetimepicker6").on("dp.change", function (e) {
 	            $('#datetimepicker7').data("DateTimePicker").minDate(e.date);

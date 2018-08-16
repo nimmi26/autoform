@@ -6,44 +6,48 @@ const Leaves = new Mongo.Collection("leaves");
 const Schemas = {};
 
 Schemas.Leaves = new SimpleSchema({
-    totalNoOfLeaves:{
-        type: Number
-    },
+    
     userId:{
         type: String,
     },
-    leaveHistory:{
-        type: Array,
-        optional: true
-    },
-    "leaveHistory.$": {
-        type: Object
-    },
-    "leaveHistory.$.appliedLeave": {
+    
+    "appliedLeave": {
         label: "Applied Leaves",
         type: Number,
+        optional: true,
+        min:-365
+    },
+    "appliedto": {
+        type: Date,
+    },
+    "appliedFrom": {
+        type: Date,
+    },
+    "approvedDate": {
+        type: Date,
         optional: true
     },
-    "leaveHistory.$.appliedto": {
-        type: Date,
-    },
-    "leaveHistory.$.appliedFrom": {
-        type: Date,
-    },
-    "leaveHistory.$.approvedDate": {
-        type: Date,
-        optional: true
-    },
-    "leaveHistory.$.approvedOrNot": {
+    "approvedOrNot": {
         type: Boolean,
         defaultValue: false
     },
-    "leaveHistory.$.canceled": {
+    "cancelByUser": {
         type: Boolean,
         defaultValue: false
     },
-    "leaveHistory.$.leaveId":{
+    "cancelByAdmin":{
+        type: Boolean,
+        defaultValue:false
+    },
+    "reason":{
         type: String
+    },
+    appliedDate:{
+        type:Date
+    },
+    seenByAdmin:{
+        type: Boolean,
+        defaultValue: false
     }
 });
 

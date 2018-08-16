@@ -8,7 +8,6 @@ Template.userLeaves.helpers({
 	leavesDetails(){
 		let userId = FlowRouter.getParam("id");
 		let leavesDetails =  Leaves.find({userId:userId}).fetch();
-		console.log(leavesDetails);
 		return leavesDetails[0];
 	},
 	userDetail(){
