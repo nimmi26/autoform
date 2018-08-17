@@ -1,5 +1,6 @@
 import './adminHomePage.html';
 import '../../layouts/header.js';
+import '../all-notifications/allNotifications.js';
 import  Invitations  from '../../../../api/invitations/invitations.js';
 import Leaves from '../../../../api/leaves/leaves.js';
 import { Meteor } from 'meteor/meteor';

@@ -72,7 +72,7 @@ AutoForm.hooks({
                                 console.log(id);
                                 Meteor.call('updateInvitee',emailVar,userId);
                                 sweetAlert("Accounct Created.","success");
-                                FlowRouter.go('/admin');
+                                FlowRouter.go('/homepage');
                             }
                         });
                     }else{

@@ -36,7 +36,7 @@ Meteor.methods({
         if(leaveData.admin){
             return Leaves.update({_id:leaveData.leaveId},{$set:{cancelByAdmin:true,approvedOrNot:false}});
         }else{
-            return Leaves.update({_id:leaveData.leaveId},{$set:{cancelByUser:true}});
+            return Leaves.update({_id:leaveData.leaveId},{$set:{cancelByUser:true,approvedOrNot:false}});
         } 
     },
     approveLeave(leaveData){
@@ -47,7 +47,6 @@ Meteor.methods({
        return Leaves.update({_id:leaveData.leaveId},{$set:{approvedOrNot:true,cancelByAdmin:false,approvedDate:new Date()}});
     },
     seenByAdmin(userId){
-       // console.log(userId);
         return (Leaves.update({userId:userId},{set:{seenByAdmin:true}}));
     }
 });

@@ -53,6 +53,7 @@
                                         <th scope="col">Approve Or Disapprove</th>
                                         <th scope="col">Cancel</th>
                                         <th scope="col">Approved/Canceled Date</th>
+                                        <th scope="col">Details</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -67,7 +68,7 @@
                                             {{#if approvedOrNot }} 
                                                 <button value="{{_id}}" class="btn btn-primary approve_leave" disabled>Approved</button>
 
-                                            {{else if cancelByUser}}
+                                            {{else if  cancelByUser}}
                                                 <button value="{{_id}}" class="btn btn-primary approve_leave" disabled>Canceled by User</button>
                                             {{else}}
                                                 <button value="{{_id}}" class="btn btn-primary approve_leave" >Approve</button>
@@ -87,6 +88,7 @@
                                             {{else}}
                                             {{/if}}
                                         </td>
+                                        <td><button value="{{_id}}" class="btn btn-primary view-reason">View</button></td>
                                     </tr>
                                     {{/each}}
                                     {{else}}

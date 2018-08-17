@@ -64,8 +64,37 @@ FlowRouter.route('/user-detail/leaves/:id',{
 	}
 });
 
+FlowRouter.route('/leave-notifictions',{
+	name: 'allNotifications',
+	action(){
+		BlazeLayout.render('App_body',{ main: 'allNotifications'})
+	}
+})
+
+/*FlowRouter.route('/#/enroll-account/:token',{
+	name: 'allNotifications',
+	action(){
+		BlazeLayout.render('App_body',{ main: 'allNotifications'})
+	}
+})*/
+
 FlowRouter.notFound = {
 	action() {
 		BlazeLayout.render('App_body', { main: 'App_notFound' });
 	},
 };
+
+
+/*AccountsTemplates.configureRoute('enrollAccount', {
+	layoutType: 'blaze',
+	name: 'enrollAccount',
+	path: '/enroll-account',
+	template: 'signup',
+	layoutTemplate: 'App_body',
+	redirect:'/signup'
+});*/
+
+
+/*Accounts.urls.enrollAccount = function (token) {
+	return Meteor.absoluteUrl('enroll-account/' + token);
+};*/

@@ -1,0 +1,47 @@
+<template name="viewReason">
+	<div id="viewReason" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+
+		    <!-- Modal content-->
+		    <div class="modal-content">
+		     	<div class="modal-header">
+		        	<button type="button" class="close" data-dismiss="modal">&times;</button>
+		        	<h4 class="modal-title">Leave Details</h4>
+		        </div>
+		      	<div class="modal-body">
+		        	<div class="form-group">
+					    <label for="exampleInputEmail1">Leave Applied Date:</label>
+					    <small id="emailHelp" class="form-text text-muted">{{formateTime leaveDeatils.appliedDate}}</small>
+					</div>
+		      	</div>
+		      	<div class="modal-body">
+		        	<div class="form-group">
+					    <label for="exampleInputEmail1">From:</label>
+					    <small id="emailHelp" class="form-text text-muted">{{formateTime leaveDeatils.appliedto}}</small>
+					</div>
+		      	</div>
+		      	<div class="modal-body">
+		        	<div class="form-group">
+					    <label for="exampleInputEmail1">To:</label>
+					    <small id="emailHelp" class="form-text text-muted">{{formateTime leaveDeatils.appliedFrom}}</small>
+					</div>
+		      	</div>
+		      	 <div class="modal-body">
+		        	<div class="form-group">
+					    <label for="exampleInputEmail1">Total days:</label>
+					    <small id="emailHelp" class="form-text text-muted">{{ leaveDeatils.appliedLeave}}</small>
+					</div>
+		      	</div>
+		      	<div class="modal-body">
+		        	<div class="form-group">
+					    <label for="exampleInputEmail1">Reason:</label>
+					    <small id="emailHelp" class="form-text text-muted">{{leaveDeatils.reason}}</small>
+					</div>
+		      	</div>
+		      	<div class="modal-footer">
+		        	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		      	</div>
+		    </div>
+		</div>
+	</div>
+</template>

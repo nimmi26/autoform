@@ -82,8 +82,10 @@ Schema.User = new SimpleSchema({
     },
     'services.$.password':{
         type:String,
+        optional:true,
         autoform:{
             type:"password"
+
         }
     }
 

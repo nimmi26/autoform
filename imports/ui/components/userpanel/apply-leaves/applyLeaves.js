@@ -1,5 +1,6 @@
 import './applyLeaves.html';
 import Leaves from '../../../../api/leaves/leaves.js';
+import '../../adminpanel/user-leave/viewReason.js';
 Template.applyLeaves.onCreated(function(){
     Meteor.subscribe('leavesDetails');
 });
@@ -75,5 +76,10 @@ Template.applyLeaves.events({
     			sweetAlert("Oops!","Something went wrong.","error");
     		}
     	})
+    },
+
+    'click .view-reason':function(event){
+        let leaveDeatils = Leaves.findOne({_id:event.target.value});
+        Modal.show('viewReason',{leaveDeatils:leaveDeatils});
     }
 });

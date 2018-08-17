@@ -2,14 +2,13 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8">
-                
                 <h2>Admin Login</h2>
                 {{#autoForm collection="Meteor.users" id="logInForm2"  validation="none"}}
                     {{> afQuickField name='emails.0.address'}}
                     {{> afQuickField name='services.0.password'}}
                     <button type="submit" class="btn btn-primary">Login</button>
                 {{/autoForm }}
-                <a href="{{pathFor '/singup'}}" >Do not have an account? Register here</a>
+                <a href="{{pathFor '/signup'}}" >Do not have an account? Register here</a>
                 
             </div>
         </div>

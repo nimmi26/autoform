@@ -36,7 +36,7 @@ AutoForm.hooks({
 				
 				Meteor.loginWithPassword(emailVar,passwordVar,(err)=>{
 					if(!err){
-						FlowRouter.go('/admin-home');
+						FlowRouter.go('/homepage');
 					}else{
 						//("All fields are required..","error");
 						//console.log(err);

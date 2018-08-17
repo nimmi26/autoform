@@ -1,0 +1,21 @@
+<template name="allNotifications">
+	{{>header}}
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+                <h2>All Leave Applications</h2>
+                <a href="{{pathFor '/homepage'}}" class="pull-right">All Employee</a>
+            </div>
+        </div>
+        <div class="row">
+        	{{#each allLeaveApplications}}
+            <div class="col-md-12 ">
+                <div class="list-group" >
+                	
+                    <a href="{{pathFor '/user-detail/leaves/:id' id=userDetail._id}}" class="list-group-item list-group-item-action " style="border: none !important">{{userDetail.profile.name}} applied leaves for {{leaveDetail.appliedLeave}} day(s). Date: {{formateTime leaveDetail.appliedto}} to {{formateTime leaveDetail.appliedFrom}}</a>
+                </div> 
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</template>

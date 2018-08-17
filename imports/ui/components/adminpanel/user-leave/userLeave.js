@@ -1,10 +1,9 @@
 import './userLeave.html';
 import Leaves from '../../../../api/leaves/leaves.js';
+import './viewReason.js';
 Template.userLeave.onCreated(function(){
     Meteor.subscribe('userList');
-    Meteor.subscribe('leavesDetails');
-    
-   
+    Meteor.subscribe('leavesDetails');   
 });
 
 Template.userLeave.helpers({
@@ -76,5 +75,10 @@ Template.userLeave.events({
                 sweetAlert("Oops!","Something went wrong.","error");
             }
         })
+    },
+
+    'click .view-reason':function(event){
+        let leaveDeatils = Leaves.findOne({_id:event.target.value});
+        Modal.show('viewReason',{leaveDeatils:leaveDeatils});
     }
 })
