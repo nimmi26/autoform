@@ -9,6 +9,8 @@ Template.addUserModal.helpers({
     }
 });
 
+
+
 Template.addUserModal.onCreated(function () {
 	Meteor.subscribe('invitations');
 });
@@ -19,23 +21,13 @@ AutoForm.hooks({
         onSubmit: function(doc) {
             var self = this;
             let emailVar = doc.email;
+
             if (emailVar)  {
                 Meteor.call('checkUserInInviteCollection',emailVar,function(err,res){
                     if(res){
                         swal("Invitation already sent.");
                     }else{
                         Meteor.call("inviteUser",emailVar,function(err,res){
-                            /*Accounts.createUser({username: emailVar, email: emailVar, password: 'initialPassword'},function(err,res){
-                                var userId = res;
-                                console.log(res);
-                                console.log(err);
-                            });
-                            //console.log(userId);
-                            console.log(Meteor.userId())
-                            Accounts.sendEnrollmentEmail(Meteor.userId(),function(err,res){
-                                console.log(err)
-                                console.log(res)
-                            });*/
                             if(err){
                                 swal('Oops!',err.reason,"error");
                             }else{

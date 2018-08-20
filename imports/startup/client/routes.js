@@ -16,12 +16,11 @@ FlowRouter.route('/', {
 	},
 });
 
-FlowRouter.route('/signup', {
-	name: 'singup',
-	action() {
-		document.title = "Signup";
-		BlazeLayout.render('App_body', { main: 'signup' });
-	},
+FlowRouter.route( '/enroll-account/:token', {
+  	name: 'enroll-account',
+  	action( params ) {
+	    BlazeLayout.render('App_body', { main: 'signup' });
+  	}
 });
 
 // Router for user leaves
@@ -64,6 +63,12 @@ FlowRouter.route('/user-detail/leaves/:id',{
 	}
 });
 
+FlowRouter.route('/create-profile/:id',{
+	name:'createProfile',
+	action(){
+		BlazeLayout.render('App_body',{main: 'createProfile'})
+	}
+})
 FlowRouter.route('/leave-notifictions',{
 	name: 'allNotifications',
 	action(){
@@ -84,7 +89,9 @@ FlowRouter.notFound = {
 	},
 };
 
-
+/*Accounts.onEnrollmentLink(function(token){
+	console.log(token)
+})*/
 /*AccountsTemplates.configureRoute('enrollAccount', {
 	layoutType: 'blaze',
 	name: 'enrollAccount',

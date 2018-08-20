@@ -11,7 +11,9 @@ Schema.UserProfile = new SimpleSchema({
     },
     birthday: {
         type: Date,
-        optional: true
+        optional: true,
+        max: new Date()
+        
     },
     gender: {
         type: String,
@@ -66,6 +68,14 @@ Schema.User = new SimpleSchema({
     createdAt: {
         type: Date
     },
+    profileCreated:{
+        type:Boolean,
+        defaultValue:false
+    },
+    userRole:{
+        type: Number,
+        defaultValue:1
+    },
     profile: {
         type: Schema.UserProfile,
         optional: true
@@ -87,7 +97,16 @@ Schema.User = new SimpleSchema({
             type:"password"
 
         }
+    },
+    'services.$.cpassword':{
+        type:String,
+        optional:true,
+        autoform:{
+            type:"password"
+
+        }
     }
+
 
 });
 

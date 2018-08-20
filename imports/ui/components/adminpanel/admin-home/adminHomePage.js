@@ -6,14 +6,15 @@ import Leaves from '../../../../api/leaves/leaves.js';
 import { Meteor } from 'meteor/meteor';
 
 Template.adminHomePage.onCreated(function(){
-   Meteor.subscribe('leavesDetails');
+    Meteor.subscribe('leavesDetails');
     Meteor.subscribe('invitations');
+    Meteor.subscribe('userList');
 });
 
 Template.adminHomePage.helpers({
     invitationList(){
-        const allInvitations = Invitations.find({}).fetch();
-        return allInvitations;
+        const allUsersList = Meteor.users.find({userRole:1}).fetch();
+        return allUsersList;
     },
     formateTime(date){
         return moment(date).format('MM-DD-YYYY');

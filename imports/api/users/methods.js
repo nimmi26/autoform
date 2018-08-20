@@ -1,4 +1,5 @@
 import { Meteor } from 'meteor/meteor';
+import { Accounts } from 'meteor/accounts-base';
 Meteor.methods({
     updateUser(updatedDoc){
         
@@ -29,5 +30,28 @@ Meteor.methods({
                 }
             );
         }  
+    },
+
+    checkForToken(userData){
+        let err = {};
+        let checkfortoken = Meteor.users.find({'services.password.reset.token':userData.token}).count();
+        if(checkfortoken){
+            return checkfortoken;   
+        }    
+    },
+
+    createUserProfile(userData){
+        return(
+            Meteor.users.update({_id:userData.userId},{$set:{'profile.name':userData.profilename,'profile.birthday':userData.profilebirthady,'profile.gender':userData.profilegender,'profile.userRole':1,'profile.confrimOrNot':false,'profile.totalNoOfLeaves':0,profileCreated:true}})
+        );
+    },
+    inviteUser(email){
+        var userId = Accounts.createUser({username: email, email: email, password: 'initialPassword'});
+        console.log(Accounts.sendEnrollmentEmail(userId));
     }
+   /* loginuser(email,password){
+        return (
+            Meteor.loginWithPassword(email,password)
+        );
+    }*/
 });

@@ -1,0 +1,19 @@
+<template name="createProfile">
+    <div class="container">
+        <div class="row">
+            <div class="pen-title">
+                <h1>Welcome to Deligence!</h1>
+            </div>
+            <div class="module form-module">
+                <h2>Create Your Profile</h2>
+                {{#autoForm collection="Meteor.users" id="createProfileform"   validation="none"}}
+                    {{> afQuickField name='profile.name'}}
+                    {{> afQuickField name='profile.birthday'}}
+                    {{> afQuickField name='profile.gender' options="allowed"}}
+                    <button type="submit" class="btn btn-primary">Update</button>
+                {{/autoForm }}
+               
+            </div>
+        </div>
+    </div>
+</template>

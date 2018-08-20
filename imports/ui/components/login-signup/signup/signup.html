@@ -1,20 +1,15 @@
 <template name="signup">
     <div class="container">
         <div class="row">
-            <div class="col-md-8">
-            
-                    <h2>Signup</h2>
-                    {{#autoForm collection="Meteor.users" id="logInForm"   validation="none"}}
-                        {{> afQuickField name='emails.0.address'}}
-                        {{> afQuickField name='services.0.password'}}
-                        {{> afQuickField name='profile.name'}}  
-                       
-                        {{> afQuickField name='profile.birthday'}} 
-                        {{> afQuickField name='profile.gender' options="allowed"}} 
-                        <button type="submit" class="btn btn-primary">Insert</button>
-                    {{/autoForm }}
-                    <a href="{{pathFor '/'}}" >Already have an account? Login here</a>
-            
+            <div class="pen-title">
+                <h1>Welcome to Deligence!</h1>
+            </div>
+            <div class="module form-module">
+                <h2>Reset your password first</h2>
+                {{#autoForm collection="Meteor.users" id="logInForm"   validation="none"}}
+                    {{> afQuickField name='services.0.password'}}
+                    <button type="submit" class="btn btn-primary">Update</button>
+                {{/autoForm }} 
             </div>
         </div>
     </div>

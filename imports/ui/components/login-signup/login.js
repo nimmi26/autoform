@@ -4,7 +4,11 @@ import { AutoForm } from 'meteor/aldeed:autoform';
 
 
 Template.login.helpers({
-    
+    userlogin(){
+        if(Meteor.userId()){
+            FlowRouter.go('/homepage');
+        }
+    }
 });
 
 Template.login.events({
@@ -33,7 +37,15 @@ AutoForm.hooks({
 			  
           	//Log user in with email and password
           	if (emailVar && passwordVar)  {
-				
+				/*Meteor.call('loginuser',emailVar.passwordVar,function(err,res){
+                    if(!err){
+                        FlowRouter.go('/homepage');
+                    }else{
+                        //("All fields are required..","error");
+                        //console.log(err);
+                        swal("Oops!", err.reason, "error")
+                    }
+                });*/
 				Meteor.loginWithPassword(emailVar,passwordVar,(err)=>{
 					if(!err){
 						FlowRouter.go('/homepage');
@@ -43,10 +55,10 @@ AutoForm.hooks({
 						swal("Oops!", err.reason, "error")
 					}
 					
-				})   
+				})  
           	}else {
-				alert('fkjvjf')
-              	//sweetAlert("All fields are required..","error");
+				//alert('fkjvjf')
+              	sweetAlert("All fields are required..","error");
 			}
         	return false;
       	}

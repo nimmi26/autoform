@@ -12,25 +12,24 @@
                                 <tr>
                                     <th>e-Mail</th>
                                     <th>Invitation Date</th>
-                                    <th>Accepted/Pending</th>  
+                                    <th>Profile Created/Pending</th>  
                                 </tr>
                             </thead>
                             <tbody>
                             {{#each invitationList}}
                                 <tr>
-                                    <td>{{email}}</td>
+                                    <td>{{emails.[0].address}}</td>
                                     <td>{{formateTime invitationDate}}</td>
                                     <td>
-                                    {{# if acceptedOrNot}}
-                                        Accepted
+                                    {{# if profileCreated}}
+                                        Created
                                     {{else}}
                                         Pending
                                     {{/if}}
                                     </td>
-                                    
                                     <td>
-                                        {{# if acceptedOrNot}}
-                                            <a href="{{pathFor '/user-detail/:id' id=userId}}" class="btn btn-primary">View</a>
+                                        {{# if profileCreated}}
+                                            <a href="{{pathFor '/user-detail/:id' id=_id}}" class="btn btn-primary">View</a>
                                         {{/if}}
                                     </td>
                                 </tr>

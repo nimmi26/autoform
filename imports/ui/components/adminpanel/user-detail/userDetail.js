@@ -17,6 +17,7 @@ Template.userDetail.helpers({
     selectedPersonDoc(){
         let userId = FlowRouter.getParam("id");
         let userDetail = Meteor.users.findOne({_id:userId});
+      
         return userDetail;
     }
 });
@@ -26,7 +27,7 @@ AutoForm.hooks({
     updateUserForm: {
         onSubmit: function(updatedDoc) {
             var self = this;
-            
+            console.log(updatedDoc);
             let name = updatedDoc.profile.name;
             let birthday = updatedDoc.profile.birthday;
             let gender = updatedDoc.profile.gender;
