@@ -4,7 +4,7 @@ import '../all-notifications/allNotifications.js';
 import  Invitations  from '../../../../api/invitations/invitations.js';
 import Leaves from '../../../../api/leaves/leaves.js';
 import { Meteor } from 'meteor/meteor';
-
+import '../sidebar/sidebar.js';
 Template.adminHomePage.onCreated(function(){
     Meteor.subscribe('leavesDetails');
     Meteor.subscribe('invitations');

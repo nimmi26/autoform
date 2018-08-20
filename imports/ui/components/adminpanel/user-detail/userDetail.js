@@ -2,6 +2,7 @@ import './userDetail.html';
 import '../user-leave/userLeave.js';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { AutoForm } from 'meteor/aldeed:autoform';
+import '../sidebar/sidebar.js';
 Template.userDetail.onCreated(function(){
     Meteor.subscribe('userList');
     // Meteor.subscribe('invitations');

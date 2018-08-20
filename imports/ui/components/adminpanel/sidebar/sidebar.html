@@ -1,0 +1,22 @@
+<template name="sidebar">
+	<aside id="sidebar" class="column-left">
+		<nav id="mainnav">
+  			<ul>
+  				{{#if userDetail}}
+	  				<li class="selected-item"><a href="{{pathFor '/homepage'}}">Dashboard</a></li>
+	                <li><a href="{{pathFor '/leave-notifictions'}}" >Leave Application</a></li>
+	                <li><a href="#">Holiday Calender</a></li>
+	                
+	                <li><a href="{{pathFor '/user-detail/:id' id=userDetail}}" >User Detail</a></li>
+                                    
+	                <li><a href="{{pathFor '/user-detail/leaves/:id' id=userDetail}}" >User Leaves</a></li>
+  				{{else}}
+	  				<li class="selected-item"><a href="{{pathFor '/homepage'}}">Dashboard</a></li>
+	                <li><a href="{{pathFor '/leave-notifictions'}}" >Leave Application</a></li>
+	                <li><a href="#">Holiday Calender</a></li>
+  				{{/if}}
+                
+            </ul>
+		</nav>	
+	</aside>	
+</template>
