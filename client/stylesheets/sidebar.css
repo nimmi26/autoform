@@ -188,8 +188,10 @@ header div.tagline a {
 	color:#ffffff;
 }
 
-
-
+.userprofile{
+	margin-left: 25%;
+  	margin-top: 6%;
+}
 /** body **/
 section#body {
 	padding: 0;
@@ -223,7 +225,7 @@ nav#mainnav ul {
 nav#mainnav li {
 	padding:0;
 	border-bottom: 1px solid #333;
-	
+
 }
 nav#mainnav li.selected-item  {
 	border-bottom:none;

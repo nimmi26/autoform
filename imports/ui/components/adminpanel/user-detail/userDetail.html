@@ -7,26 +7,16 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-12">
-                                <h4>{{userDetail.profile.name}} Profile 
+                                <div class="col-md-2">
+                                    {{>sidebar}}
+                                </div>
+                                <div class="col-md-10 sidebar userprofile">
+                                    <h2>{{userDetail.profile.name}} Profile 
                                     {{#if userDetail.profile.confrimOrNot}}
-                                    <i class="fa fa-star" aria-hidden="true" style="color: #4760BB;"></i>
+                                        <i class="fa fa-star" aria-hidden="true" style="color: #4760BB;"></i>
                                     {{/if}}
-                                </h4>
-                                <hr>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4 ">
-                                {{>sidebar}}
-                                <!-- <div class="list-group ">
-                                    <a href="{{pathFor '/homepage'}}" class="list-group-item list-group-item-action ">Dashboard</a>
-                                    <a href="{{pathFor '/user-detail/:id' id=userDetail._id}}" class="list-group-item list-group-item-action active">User Detail</a>
-                                    <a href="{{pathFor '/user-detail/leaves/:id' id=userDetail._id}}" class="list-group-item list-group-item-action">User Leaves</a>
-                                    
-                                </div> --> 
-                            </div>
-                            <div class="col-md-8">
-                                {{#autoForm collection="Meteor.users" id="updateUserForm" doc=selectedPersonDoc validation="none" }}
+                                    </h2>
+                                    {{#autoForm collection="Meteor.users" id="updateUserForm" doc=selectedPersonDoc validation="none" }}
                                     {{> afQuickField name='emails.0.address' readonly=true}}
                                     {{> afQuickField name='profile.name'}}  
                                     {{> afQuickField name='profile.birthday'}} 
@@ -35,6 +25,15 @@
                                     {{> afQuickField name='profile.dateOfConfrimation'}}
                                     <button type="submit" class="btn btn-primary">Update</button>
                                 {{/autoForm }}
+                                </div>
+                                
+                                <hr>
+                            </div>
+                        </div>
+                        <div class="row">
+                            
+                            <div class="col-md-8">
+                                
                                 
                             </div>
                         </div>

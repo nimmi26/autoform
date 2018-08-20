@@ -1,6 +1,7 @@
 import './userLeave.html';
 import Leaves from '../../../../api/leaves/leaves.js';
 import './viewReason.js';
+import '../sidebar/sidebar.js';
 Template.userLeave.onCreated(function(){
     Meteor.subscribe('userList');
     Meteor.subscribe('leavesDetails');   
