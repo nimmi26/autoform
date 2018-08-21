@@ -34,16 +34,31 @@ FlowRouter.route('/leaves/:id',{
 FlowRouter.route('/homePage',{
 	name: 'homePage',
 	action(){
-		document.title = "Admin Home";
+		document.title = "Home";
 		BlazeLayout.render('App_body', { main: 'homePage'});
 	},
 });
 
+FlowRouter.route('/on-leave',{
+	name:'onLeave',
+	action(){
+		document.title = "Employee On Leave",
+		BlazeLayout.render('App_body',{main: 'employeeOnLeave'})
+	}
+})
+
 //router for admin can see user detail
 FlowRouter.route('/user-detail/:id',{
-	name:'adminHomePage',
+	name:'userDetail',
 	action(){
 		BlazeLayout.render('App_body',{ main: 'userDetail'})
+	}
+});
+
+FlowRouter.route('/leave-notifictions-history',{
+	name:'leaveNotificationHistroy',
+	action(){
+		BlazeLayout.render('App_body',{ main: 'leaveNotificationHistroy'})
 	}
 });
 

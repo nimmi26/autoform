@@ -39,7 +39,7 @@ Meteor.methods({
             return Leaves.update({_id:leaveData.leaveId},{$set:{cancelByAdmin:true,approvedOrNot:false}});
         }else{
             return Leaves.update({_id:leaveData.leaveId},{$set:{cancelByUser:true,approvedOrNot:false}});
-        } 
+        }
     },
     approveLeave(leaveData){
         let leaveDetail = Leaves.find({_id:leaveData.leaveId}).fetch();

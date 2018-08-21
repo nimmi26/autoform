@@ -1,8 +1,6 @@
 import './sidebar.html';
-Template.sidebar.helpers({
+Template.usersidebar.helpers({
 	userDetail(){
-		if(FlowRouter.getParam("id")){
-			return FlowRouter.getParam("id");
-		}
+		return Meteor.userId();
 	}
 });

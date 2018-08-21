@@ -1,14 +1,14 @@
-<template name="allNotifications">
-    <div id="wrapper" class="toggled">
+<template name="leaveNotificationHistroy">
+	<div id="wrapper" class="toggled">
     	{{> sidebar}}
         {{> header}}
         <div id="page-content-wrapper">
             <div class="container-fluid">
-                <h2>All Leave Applications</h2>
+                <h2>All Leave Applications History</h2>
                 {{#if allLeaveApplications}}
                     {{#each allLeaveApplications}}
                     <div class="box-shadow">
-                        <a href="{{pathFor '/user-detail/leaves/:id' id=userDetail._id}}" class="" style="border: none !important">{{userDetail.profile.name}} applied leaves for {{leaveDetail.appliedLeave}} day(s). Date: {{formateTime leaveDetail.appliedto}} to {{formateTime leaveDetail.appliedFrom}}</a>
+                        <a href="{{pathFor '/user-detail/leaves/:id' id=userDetail._id}}"  style="border: none !important">{{userDetail.profile.name}} applied leaves for {{leaveDetail.appliedLeave}} day(s). Date: {{formateTime leaveDetail.appliedto}} to {{formateTime leaveDetail.appliedFrom}}</a>
                     </div>
                     {{/each}}
                 {{else}}

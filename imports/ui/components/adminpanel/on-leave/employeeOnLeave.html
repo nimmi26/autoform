@@ -1,0 +1,41 @@
+<template name="employeeOnLeave">
+	<div id="wrapper" class="toggled">
+        {{> sidebar}}
+        {{> header}}
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+            	<div class="user-box-shadow">
+	            	<h2>Employee On Leave</h2>
+	            	<table class="table table-dark">
+	                    <thead>
+	                        <tr>
+	                            <th>Employee Name</th>
+	                            <th>Total Days</th>
+	                            <th>From Date</th> 
+	                            <th>To Date</th> 
+	                            <th>Cancel Leave</th>
+	                        </tr>
+	                    </thead>
+	                    {{#if employeeOnLeave}}
+		                    <tbody>
+		                    {{#each employeeOnLeave}}
+		                        <tr>
+		                            <td>{{userDetail.profile.name}}</td>
+		                            <td>{{leaveDetail.appliedLeave}}</td>
+		                            <td>{{formateTime leaveDetail.appliedto}}</td>
+		                            <td>{{formateTime leaveDetail.appliedFrom}}</td>
+		                            <td>
+		                            	<button value="{{leaveDetail._id}}" class="btn btn-primary  submit-button">Cancel Leave</button>
+		                            </td>		                            
+		                        </tr>
+		                    {{/each}}
+			                </tbody>
+			            {{else}}
+			            	<h3>No Employee On Leave</h3>
+			            {{/if}}
+	                </table>
+	            </div>
+            </div>
+        </div>
+    </div>
+</template>

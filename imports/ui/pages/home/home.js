@@ -6,3 +6,5 @@ import '../../components/adminpanel/admin-home/adminHomePage.js';
 import '../../components/adminpanel/user-detail/userDetail.js';
 import '../../components/layouts/homePage.js';
 import '../../components/layouts/holiday.js';
+import '../../components/adminpanel/on-leave/employeeOnLeave.js';
+import '../../components/adminpanel/notification-histroy/leaveNotificationHistroy.js';
