@@ -8,6 +8,7 @@
   "dependencies": {
     "@babel/runtime": "^7.0.0-beta.56",
     "meteor-node-stubs": "^0.4.1",
+    "moment-holiday": "^1.5.1",
     "simpl-schema": "^1.4.3"
   },
   "devDependencies": {

@@ -2,7 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import Leaves from './leaves.js';
 Meteor.methods({
     assignLeave(userId,parameter){
-        let existingUser = Leaves.find({userId:userId}).count();
+        /*let existingUser = Leaves.find({userId:userId}).count();
         if(existingUser){
             Leaves.update(
                 {  userId:userId },
@@ -13,7 +13,9 @@ Meteor.methods({
                 userId,
                 totalNoOfLeaves:1
             })
-        }  
+        }*/
+        Meteor.users.update({_id:userId},{$inc:{'profile.totalNoOfLeaves':parameter}});
+
     },
     applyLeaves(applyData){
         return Leaves.insert(

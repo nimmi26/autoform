@@ -1,6 +1,93 @@
 <template name="applyLeaves">
-	{{> header}} 
-	<div class="container">
+	 <div id="wrapper" class="toggled">
+        {{> usersidebar}}
+        {{> header}}
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+            	<h3>Welcome {{userDetail.profile.name}}  
+                    {{#if userDetail.profile.confrimOrNot}}
+                    <i class="fa fa-star" aria-hidden="true" style="color: #4760BB;"></i>
+                    {{/if}}
+                </h3>
+            	<div class="user-box-shadow">
+	            	<h4>Apply Leave</h4>
+	                <form id="applyLeaves">
+				        <div class="form-group">
+				        	<label>To date</label>
+				            <div class='input-group date' id='datetimepicker6'>
+				            	
+				                <input type='text' class="form-control" id="toDate"/>
+				                <span class="input-group-addon">
+				                    <span class="glyphicon glyphicon-calendar"></span>
+				                </span>
+				            </div>
+				        </div>
+				        <div class="form-group">
+				        	<label>From date</label>
+				            <div class='input-group date' id='datetimepicker7'>
+
+				                <input type='text' class="form-control" id="fromDate" />
+				                <span class="input-group-addon">
+				                    <span class="glyphicon glyphicon-calendar"></span>
+				                </span>
+				            </div>
+				        </div>
+				        <div class="form-group">
+				        	<label>Reason</label>
+				            <textarea class="form-control" id="leaveReason" ></textarea>
+				        </div>	
+						<button class="btn btn-primary apply-leave submit-button">Apply</button>
+					</form>
+	            </div>
+	            <div class="user-leave-box">
+	            	<h2>All Leaves</h2>
+                	<table class="table">
+					  	<thead>
+						    <tr>
+						    	<th>Total days</th>
+						     	<th scope="col">To Date</th>
+						     	<th scope="col">From date</th>
+						    	<th scope="col">Approved Or Not</th>
+						    	<th scope="col">Cancel</th>
+						    	<th scope="col">Approved Date</th>
+						    	<th scope="col">Details</th>
+						    </tr>
+					  	</thead>
+					  	<tbody>
+					  		
+					  		{{#each leavesDetails}}
+					  		<tr>
+					  			<td>{{appliedLeave}}</td>
+						      	<td>{{formateTime appliedto}}</td>
+						      	<td>{{formateTime appliedFrom}}</td>
+						      	<td>{{#if approvedOrNot}}Approved{{else}}Pending{{/if}}</td>
+						      	<td>
+						      		{{# if cancelByUser }}
+						      			<button value="{{_id}}" class="btn btn-primary cancel_leave submit-button" disabled>Canceled</button>
+						      		{{else if cancelByAdmin}}
+						      			<button value="{{_id}}" class="btn btn-primary cancel_leave submit-button" disabled>Canceled By Admin</button>
+						      		{{else}}
+						      			<button value="{{_id}}" class="btn btn-primary cancel_leave submit-button">Cancel</button>
+						      		{{/if}}	
+						      	</td>
+						      	<td>{{#if approvedDate}}
+						      		{{formateTime approvedDate }}
+						      		{{else}}
+						      		{{/if}}
+						      	</td>
+						      	<td>
+						      		<button value="{{_id}}" class="btn btn-primary view-reason submit-button"> View</button>
+						      	</td>
+						    </tr>
+						    {{/each}}
+					  	</tbody>
+					</table>	
+	            </div>
+            </div>
+        </div>
+    </div>
+	<!--{{> header}} 
+	 <div class="container">
         <div class="row">
             <div class="col-md-9">
                 <div class="card">
@@ -114,7 +201,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <script type="text/javascript">
 	    $(function () {
 	        $('#datetimepicker6').datetimepicker({

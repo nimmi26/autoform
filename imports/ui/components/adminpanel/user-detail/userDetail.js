@@ -28,7 +28,7 @@ AutoForm.hooks({
     updateUserForm: {
         onSubmit: function(updatedDoc) {
             var self = this;
-            console.log(updatedDoc);
+            
             let name = updatedDoc.profile.name;
             let birthday = updatedDoc.profile.birthday;
             let gender = updatedDoc.profile.gender;
@@ -39,17 +39,13 @@ AutoForm.hooks({
                 if(dateOfConfrimation){
                     updatedDoc.profile.confrimOrNot = true;
                     Meteor.call("assignLeave",userId,1);
-                }else{
-                    updatedDoc.profile.confrimOrNot = false;
-                    updatedDoc.profile.dateOfConfrimation = "";
-                    Meteor.call("assignLeave",userId,-1);
                 }
 
                 Meteor.call('updateUser',updatedDoc,function(err,res){
                     if(res){
-                        sweetAlert("User updated.","success");
+                        sweetAlert("Updated","User updated successfully.","success");
                     }else{
-                        sweetAlert("Oops! Something went wornd","error");
+                        sweetAlert("Oops!", "Something went wornd","error");
                     }
                 });
             }else {

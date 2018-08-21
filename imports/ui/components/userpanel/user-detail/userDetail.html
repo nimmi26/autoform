@@ -1,41 +1,23 @@
 <template name="userDetail1">
-    {{> header}}
-    <div class="container">
-        <div class="row">
-            <div class="col-md-9">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <h4>Welcome {{userDetail.profile.name}} 
-                                    {{#if userDetail.profile.confrimOrNot}}
-                                    <i class="fa fa-star" aria-hidden="true" style="color: #4760BB;"></i>
-                                    {{/if}}
-                                </h4>
-                                <hr>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4 ">
-                                <div class="list-group ">
-                                    <a href="{{pathFor '/homepage' }}" class="list-group-item list-group-item-action active">User Details</a>
-                                    <a href="{{pathFor '/applied-leaves/:id' id=userDetail._id}}" class="list-group-item list-group-item-action ">Leaves</a>
-                                    
-                                </div> 
-                            </div>
-                            <div class="col-md-8">
-                                {{#autoForm collection="Meteor.users" id="updateUserFormByUser" doc=selectedPersonDoc validation="none" }}
-                                    {{> afQuickField name='emails.0.address' readonly=true}}
-                                    {{> afQuickField name='profile.name'}}  
-                                    {{> afQuickField name='profile.birthday'}} 
-                                    {{> afQuickField name='profile.gender' options="allowed"}} 
-                                    <button type="submit" class="btn btn-primary">Update</button>
-                                {{/autoForm }}
-                                
-                            </div>
-                        </div>
-                        
-                    </div>
+    <div id="wrapper" class="toggled">
+        {{> usersidebar}}
+        {{> header}}
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="user-box-shadow">
+                    <h4>Welcome {{userDetail.profile.name}} 
+                        {{#if userDetail.profile.confrimOrNot}}
+                        <i class="fa fa-star" aria-hidden="true" style="color: #4760BB;"></i>
+                        {{/if}}
+                    </h4>
+                    {{#autoForm collection="Meteor.users" id="updateUserFormByUser" doc=selectedPersonDoc validation="none" }}
+                        {{> afQuickField name='emails.0.address' readonly=true}}
+                        {{> afQuickField name='profile.name'}}  
+                        {{> afQuickField name='profile.birthday'}} 
+                        {{> afQuickField name='profile.gender' options="allowed"}} 
+                        <button type="submit" class="btn btn-primary submit-button">Update</button>
+                        <a class="btn btn-primary submit-button" style="float:right" href="{{pathFor '/applied-leaves/:id' id=userDetail._id}}">View Leaves</a>
+                    {{/autoForm }}
                 </div>
             </div>
         </div>

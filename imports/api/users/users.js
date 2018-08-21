@@ -57,7 +57,7 @@ Schema.User = new SimpleSchema({
         type: Object
     },
     "emails.$.address": {
-        label:"e-Mail",
+        label:"Email",
         type: String,
         regEx: SimpleSchema.RegEx.Email
     },

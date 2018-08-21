@@ -12,7 +12,7 @@ FlowRouter.route('/', {
 	name: 'App.home',
 	action() {
 		document.title = "Login";
-		BlazeLayout.render('App_body', { main: 'App_home' });
+		BlazeLayout.render('App_body', { main: 'login' });
 	},
 });
 
@@ -76,32 +76,15 @@ FlowRouter.route('/leave-notifictions',{
 	}
 })
 
-/*FlowRouter.route('/#/enroll-account/:token',{
-	name: 'allNotifications',
+FlowRouter.route('/holiday',{
+	name:'holiday',
 	action(){
-		BlazeLayout.render('App_body',{ main: 'allNotifications'})
+		BlazeLayout.render('App_body',{main:'holiday'});
 	}
-})*/
+})
 
 FlowRouter.notFound = {
 	action() {
 		BlazeLayout.render('App_body', { main: 'App_notFound' });
 	},
 };
-
-/*Accounts.onEnrollmentLink(function(token){
-	console.log(token)
-})*/
-/*AccountsTemplates.configureRoute('enrollAccount', {
-	layoutType: 'blaze',
-	name: 'enrollAccount',
-	path: '/enroll-account',
-	template: 'signup',
-	layoutTemplate: 'App_body',
-	redirect:'/signup'
-});*/
-
-
-/*Accounts.urls.enrollAccount = function (token) {
-	return Meteor.absoluteUrl('enroll-account/' + token);
-};*/

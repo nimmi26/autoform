@@ -1,5 +1,6 @@
 import './userLeaves.html';
 import '../../layouts/header.js';
+import '../usersidebar/sidebar.js';
 import Leaves from '../../../../api/leaves/leaves.js';
 Template.userLeaves.onCreated(function(){
     Meteor.subscribe('leavesDetails');

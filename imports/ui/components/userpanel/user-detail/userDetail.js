@@ -1,12 +1,11 @@
 import './userDetail.html';
 import '../user-leaves/userLeaves.js';
-
+import '../usersidebar/sidebar.js';
 import '../apply-leaves/applyLeaves.js';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { AutoForm } from 'meteor/aldeed:autoform';
 Template.userDetail1.onCreated(function(){
-   // Meteor.subscribe('userList');
-    // Meteor.subscribe('invitations');
+
 });
 
 Template.userDetail1.helpers({

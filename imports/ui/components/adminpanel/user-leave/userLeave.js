@@ -30,7 +30,6 @@ Template.userLeave.helpers({
     },
     seenByadmin(){
         let userId = FlowRouter.getParam("id");
-        console.log(userId);
         Meteor.call("seenByAdmin",userId);
     }
 });
@@ -39,6 +38,7 @@ Template.userLeave.events({
     'click .add-leave'(event){
         event.preventDefault();
         const leaves = $("#leaves").val();
+        console.log(leaves);
         let userId = FlowRouter.getParam("id");
         Meteor.call('assignLeave',userId,leaves);
     },

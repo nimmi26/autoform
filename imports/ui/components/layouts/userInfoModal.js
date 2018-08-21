@@ -10,13 +10,11 @@ Template.userInfoModal.events({
     'click .logout':function(event){
         event.preventDefault();
         Modal.hide();
-        let role =  Meteor.user().profile.role;
-        Meteor.logout();
-        if(role){
-            FlowRouter.go('/admin');
-        }else{
-            FlowRouter.go('/')
-        }
-
+        Meteor.logout(function(err){
+            if(!err){
+                FlowRouter.go('/')
+            }
+        });
+        
     }
 })

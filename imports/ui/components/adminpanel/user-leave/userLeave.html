@@ -1,124 +1,87 @@
 <template name="userLeave">
-    {{> header}}
-    <div class="container">
-        <div class="row">
-            <div class="col-md-9">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="col-md-2">
-                                    {{>sidebar}}
-                                </div>
-                                <div class="col-md-10 sidebar userprofile">
-                                    <h4>{{userDetail.profile.name}} Profile 
-                                        {{#if userDetail.profile.confrimOrNot}}
-                                        <i class="fa fa-star" aria-hidden="true" style="color: #4760BB;"></i>
-                                        {{/if}}
-                                        {{seenByadmin}}
-                                    </h4>
-                                    <div class="form-group row">
-                                        <label for="username" id="" value="{{userDetail.profile.totalNoOfLeaves}}" class="col-4 col-form-label">Total Leave:  {{userDetail.profile.totalNoOfLeaves}}</label> 
-                                        <input type="hidden" id="total_no_of_leave" value="{{userDetail.profile.totalNoOfLeaves}}">
-                                        <div class="col-8">
-                                            <form>
-                                                <div class="col-sm-6">
-                                                    <input id="leaves" name="leaves"  class="form-control here"  required="required" type="number">
-                                                </div>
-                                                <div class="col-4">
-                                                    <button class="btn btn-primary add-leave">Add Leaves</button>
-                                                </div>
-                                            </form>                                            
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <hr>
-                            </div>
-                        </div>
-                        <!-- <div class="row">
-                            <div class="col-md-4">
-                                <div class="list-group ">
-                                    <a href="{{pathFor '/homepage'}}" class="list-group-item list-group-item-action ">Dashboard</a>
-                                    <a href="{{pathFor '/user-detail/:id' id=userDetail._id}}" class="list-group-item list-group-item-action ">User Detail</a>
-                                    <a href="{{pathFor '/user-detail/leaves/:id' id=userDetail._id}}" class="list-group-item list-group-item-action active">User Leaves</a>
-                                    
-                                </div> 
-                            </div>
-                            <div class="col-md-8">
-                                <div class="form-group row">
-                                    <label for="username" id="" value="{{userDetail.profile.totalNoOfLeaves}}" class="col-4 col-form-label">Total Leave:  {{userDetail.profile.totalNoOfLeaves}}</label> 
-                                    <input type="hidden" id="total_no_of_leave" value="{{userDetail.profile.totalNoOfLeaves}}">
-                                    <div class="col-8">
-                                        <form>
-                                            <div class="col-sm-6">
-                                                <input id="leaves" name="leaves"  class="form-control here"  required="required" type="number">
-                                            </div>
-                                            <div class="col-4">
-                                                <button class="btn btn-primary add-leave">Add Leaves</button>
-                                            </div>
-                                        </form>                                            
-                                    </div>
-                                </div>
-                            </div>
-                        </div> -->
-                        <div class="row">
-                            <h2>All Leaves of {{userDetail.profile.name}}</h2>
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>Total days</th>
-                                        <th scope="col">To Date</th>
-                                        <th scope="col">From date</th>
-                                        <th scope="col">Approve Or Disapprove</th>
-                                        <th scope="col">Cancel</th>
-                                        <th scope="col">Approved/Canceled Date</th>
-                                        <th scope="col">Details</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {{#if leavesDetails}}
-                                    {{#each leavesDetails}}
-                                    <tr>
+    <div id="wrapper" class="toggled">
+        {{> sidebar}}
+        {{> header}}
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="user-box-shadow">
+                    <h4>{{userDetail.profile.name}} Profile 
+                        {{#if userDetail.profile.confrimOrNot}}
+                        <i class="fa fa-star" aria-hidden="true" style="color: #4760BB;"></i>
+                        {{/if}}
+                        {{seenByadmin}}
+                    </h4>
 
-                                        <td>{{appliedLeave}}</td>
-                                        <td>{{formateTime appliedto}}</td>
-                                        <td>{{formateTime appliedFrom}}</td>
-                                        <td>
-                                            {{#if approvedOrNot }} 
-                                                <button value="{{_id}}" class="btn btn-primary approve_leave" disabled>Approved</button>
+                    
+                         
+                        <input type="hidden" id="total_no_of_leave" value="{{userDetail.profile.totalNoOfLeaves}}">
 
-                                            {{else if  cancelByUser}}
-                                                <button value="{{_id}}" class="btn btn-primary approve_leave" disabled>Canceled by User</button>
-                                            {{else}}
-                                                <button value="{{_id}}" class="btn btn-primary approve_leave" >Approve</button>
-                                            {{/if}}
-                                        </td>
-                                        <td>
-                                            {{# if cancelLeave cancelByUser cancelByAdmin}}
-                                                <button value="{{_id}}" class="btn btn-primary cancel_leave" disabled>Canceled</button>
-                                               
-                                            {{else}}
-                                                <button value="{{_id}}" class="btn btn-primary cancel_leave">Cancel</button>
-                                            {{/if}}
-                                            
-                                        </td>
-                                        <td>{{#if approvedDate}}
-                                            {{formateTime approvedDate }}
-                                            {{else}}
-                                            {{/if}}
-                                        </td>
-                                        <td><button value="{{_id}}" class="btn btn-primary view-reason">View</button></td>
-                                    </tr>
-                                    {{/each}}
-                                    {{else}}
-                                        <h3>No Leaves Applied yet.</h3>
-                                    {{/if}}
-                                </tbody>
-                            </table>                                
+                        <div class="col-8">
+                            <label for="username" style="margin-left: 15px;">Total Leave:  {{userDetail.profile.totalNoOfLeaves}}</label>
+                            <form>
+                                <div class="col-sm-6">
+                                    <input id="leaves" name="leaves"  class="form-control here"  required="required" type="number">
+                                </div>
+                                <div class="col-4">
+                                    <button class="btn btn-primary add-leave submit-button">Add Leaves</button>
+                                </div>
+                            </form>  
+
                         </div>
-                    </div>
+                    
                 </div>
+                <div class="user-leave-box"> 
+                    <h2>All Leaves of {{userDetail.profile.name}}</h2>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Total days</th>
+                                <th scope="col">To Date</th>
+                                <th scope="col">From date</th>
+                                <th scope="col">Approve</th>
+                                <th scope="col">Cancel</th>
+                                <th scope="col">Details</th>
+                            </tr>
+                        </thead>
+                        {{#if leavesDetails}}
+                        <tbody>
+                            
+                            {{#each leavesDetails}}
+                            <tr>
+
+                                <td>{{appliedLeave}}</td>
+                                <td>{{formateTime appliedto}}</td>
+                                <td>{{formateTime appliedFrom}}</td>
+                                <td>
+                                    {{#if approvedOrNot }} 
+                                        <button value="{{_id}}" class="btn btn-primary approve_leave submit-button" disabled>Approved</button>
+
+                                    {{else if  cancelByUser}}
+                                        <button value="{{_id}}" class="btn btn-primary approve_leave submit-button" disabled>Canceled by User</button>
+                                    {{else}}
+                                        <button value="{{_id}}" class="btn btn-primary approve_leave submit-button" >Approve</button>
+                                    {{/if}}
+                                </td>
+                                <td>
+                                    {{# if cancelLeave cancelByUser cancelByAdmin}}
+                                        <button value="{{_id}}" class="btn btn-primary cancel_leave submit-button" disabled>Canceled</button>
+                                       
+                                    {{else}}
+                                        <button value="{{_id}}" class="btn btn-primary cancel_leave submit-button">Cancel</button>
+                                    {{/if}}
+                                    
+                                </td>
+                               
+                                <td><button value="{{_id}}" class="btn btn-primary view-reason submit-button">View</button></td>
+                            </tr>
+                            {{/each}}
+                            
+                        </tbody>
+                        {{else}}
+                            <h3>No Leaves Applied yet.</h3>
+                        {{/if}}
+                    </table>
+                </div> 
             </div>
         </div>
     </div>

@@ -1,51 +1,43 @@
 <template name="adminHomePage">
-    <div>
+    <div id="wrapper" class="toggled">
+        {{> sidebar}}
         {{> header}}
-
-        <div class="container">
-			<div class="row">
-				<div class="col-md-12">
-                    <div class="col-md-2">
-                        {{> sidebar}}
-                    </div>
-                    <div class="col-md-10 sidebar">
-                        <h2>All Employee</h2>
-                        
-                        <div id="box">
-                        <table class="table table-dark">
-                            <thead>
-                                <tr>
-                                    <th>e-Mail</th>
-                                    <th>Invitation Date</th>
-                                    <th>Profile Created/Pending</th> 
-                                    <th></th> 
-                                </tr>
-                            </thead>
-                            <tbody>
-                            {{#each invitationList}}
-                                <tr>
-                                    <td>{{emails.[0].address}}</td>
-                                    <td>{{formateTime invitationDate}}</td>
-                                    <td>
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="user-box-shadow">
+                    <h2>All Employee</h2>
+                    <table class="table table-dark">
+                        <thead>
+                            <tr>
+                                <th>e-Mail</th>
+                                <th>Invitation Date</th>
+                                <th>Profile Created/Pending</th> 
+                                <th></th> 
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {{#each invitationList}}
+                            <tr>
+                                <td>{{emails.[0].address}}</td>
+                                <td>{{formateTime invitationDate}}</td>
+                                <td>
+                                {{# if profileCreated}}
+                                    Created
+                                {{else}}
+                                    Pending
+                                {{/if}}
+                                </td>
+                                <td>
                                     {{# if profileCreated}}
-                                        Created
-                                    {{else}}
-                                        Pending
+                                        <a href="{{pathFor '/user-detail/:id' id=_id}}" class="btn btn-primary">View</a>
                                     {{/if}}
-                                    </td>
-                                    <td>
-                                        {{# if profileCreated}}
-                                            <a href="{{pathFor '/user-detail/:id' id=_id}}" class="btn btn-primary">View</a>
-                                        {{/if}}
-                                    </td>
-                                </tr>
-                            {{/each}}
-                            </tbody>
-                        </table>
-                    </div>
-                    </div>
+                                </td>
+                            </tr>
+                        {{/each}}
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
-    </div>
+    </div>    
 </template>
